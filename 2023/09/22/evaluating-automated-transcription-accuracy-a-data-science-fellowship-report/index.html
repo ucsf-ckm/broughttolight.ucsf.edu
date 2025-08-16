@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+Evaluating Automated Transcription Accuracy: A Data Science Fellowship Report | Brought to Light	</title>
+<link rel="profile" href="https://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/twentyeleven/style.css" />
+
+
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel='dns-prefetch' href='../../../../index.html' />
+
+
+
+<link rel='stylesheet' id='wp-block-library-css' href='../../../../wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio :where(figcaption){color:#ffffffa6}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed :where(figcaption){color:#ffffffa6}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:#ffffffa6}:root :where(.wp-block-image figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme :root :where(.wp-block-image figcaption){color:#ffffffa6}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote:where(.has-text-align-right){border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote:where(.has-text-align-center){border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote:where(.is-style-plain){border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table :where(figcaption){color:#ffffffa6}.wp-block-video :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video :where(figcaption){color:#ffffffa6}.wp-block-video{margin:0 0 1em}:root :where(.wp-block-template-part.has-background){margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue: #1982d1;--wp--preset--color--dark-gray: #373737;--wp--preset--color--medium-gray: #666;--wp--preset--color--light-gray: #e2e2e2;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='twentyeleven-block-style-css' href='../../../../wp-content/themes/twentyeleven/blocks.css' type='text/css' media='all' />
+
+<link rel="canonical" href="../../../../index.html%3Fp=5299.html" />
+<link rel='shortlink' href='../../../../index.html%3Fp=5299.html' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbroughttolight.ucsf.edu%252F2023%252F09%252F22%252Fevaluating-automated-transcription-accuracy-a-data-science-fellowship-report%252F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https:%252F%252Fbroughttolight.ucsf.edu%252F2023%252F09%252F22%252Fevaluating-automated-transcription-accuracy-a-data-science-fellowship-report%252F&amp;format=xml" />
+
+<script defer src="https://librarystudy.ucsf.edu/gsurvey.js"></script>
+<link rel="icon" href="../../../../wp-content/uploads/2017/02/cropped-cropped-ucsf-favicon-orange-150x150.png" sizes="32x32" />
+<link rel="icon" href="../../../../wp-content/uploads/2017/02/cropped-cropped-ucsf-favicon-orange-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="../../../../wp-content/uploads/2017/02/cropped-cropped-ucsf-favicon-orange-300x300.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2017/02/cropped-cropped-ucsf-favicon-orange-300x300.png" />
+		<style type="text/css" id="wp-custom-css">
+			footer.entry-meta {
+  display: none;
+}
+
+div#site-generator {
+	display: none;
+}		</style>
+						<style type="text/css" id="c4wp-checkout-css">
+					.woocommerce-checkout .c4wp_captcha_field {
+						margin-bottom: 10px;
+						margin-top: 15px;
+						position: relative;
+						display: inline-block;
+					}
+				</style>
+							<style type="text/css" id="c4wp-v3-lp-form-css">
+				.login #login, .login #lostpasswordform {
+					min-width: 350px !important;
+				}
+				.wpforms-field-c4wp iframe {
+					width: 100% !important;
+				}
+			</style>
+			</head>
+
+<body class="wp-singular post-template-default single single-post postid-5299 single-format-standard wp-embed-responsive wp-theme-twentyeleven singular two-column right-sidebar">
+<div class="skip-link"><a class="assistive-text" href="../../../../index.html%3Fp=5299.html#content">Skip to primary content</a></div><div id="page" class="hfeed">
+	<header id="branding">
+			
+							<h1 id="site-title"><span><a href="../../../../index.html" rel="home" >Brought to Light</a></span></h1>
+				<h2 id="site-description">Stories from UCSF Archives and Special Collections</h2>
+			
+
+						<a href="../../../../index.html" rel="home" >
+				<img src="../../../../wp-content/uploads/2018/01/cropped-ArchivesBanner_students-1.jpg" width="1000" height="288" alt="Brought to Light" decoding="async" />			</a>
+			
+									
+			
+			<nav id="access">
+				<h3 class="assistive-text">Main menu</h3>
+				<div class="menu"><ul>
+<li ><a href="../../../../index.html">Home</a></li><li class="page_item page-item-2"><a href="../../../../index.html%3Fp=2.html">About</a></li>
+<li class="page_item page-item-50"><a href="../../../../index.html%3Fp=50.html">Contact</a></li>
+<li class="page_item page-item-706"><a href="../../../../index.html%3Fp=706.html">Terms of Use</a></li>
+</ul></div>
+			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="../../../../index.html%3Fp=5289.html" rel="prev"><span class="meta-nav">&larr;</span> Previous</a></span>
+						<span class="nav-next"><a href="../../../../index.html%3Fp=5319.html" rel="next">Next <span class="meta-nav">&rarr;</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-5299" class="post-5299 post type-post status-publish format-standard hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">Evaluating Automated Transcription Accuracy: A Data Science Fellowship Report</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="../../../../index.html%3Fp=5299.html" title="3:26 pm" rel="bookmark"><time class="entry-date" datetime="2023-09-22T15:26:30+00:00">September 22, 2023</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="../../../../author/ktasker/index.html" title="View all posts by Kate Tasker" rel="author">Kate Tasker</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		
+<p><em>Guest post by Noel Salmeron, 2023 Senior Data Science Fellow for the Industry Documents Library and Data Science Initiative.</em></p>
+
+
+
+<p>Hi everyone! I had the opportunity of interning for the Industry Documents Library in coordination with the Data Science Initiative as the Senior Data Science Fellow for the Summer of 2023. I am working towards my Bachelor’s degree in Data Science and minoring in Education, and I plan to graduate in May 2024. I feel grateful that I could earn this position with UCSF and work with the fascinating Industry Documents Library as I realize how valuable archives and data are, especially when doing my own research. The Data Science Initiative was extremely helpful in teaching me Machine Learning and Natural Language Processing topics pertinent to the project and valuable for my future in data science.</p>
+
+
+
+<p><strong>Project Background</strong></p>
+
+
+
+<p>Currently, the Industry Documents Library contains more than 18 million documents relating to public health, as well as thousands of audiovisual materials, such as “recordings of internal focus groups and corporate meetings, depositions of tobacco industry employees, Congressional hearings, and radio and TV cigarette advertisements.” With this project, we wanted to evaluate the transcription accuracy of digital archives and its impact on documentation and the creation of subject words and descriptions for such archives.</p>
+
+
+
+<p><strong>Project Team</strong></p>
+
+
+
+<ul class="wp-block-list"><li>Kate Tasker, Industry Documents Library Managing Archivist</li><li>Rebecca Tang, Industry Documents Library Applications Programmer (and Junior Fellows Advisor)</li><li>Geoffrey Boushey, Head of Data Engineering (and Senior Fellow Advisor)</li><li>Rachel Taketa, Industry Documents Library Processing and Reference Archivist</li><li>Melissa Ignacio, Industry Documents Library Program Coordinator</li><li>Noel Salmeron, Senior Data Science Fellow</li><li>Adam Silva, Junior Data Science Fellow</li><li>Bryce Quintos, Junior Data Science Fellow</li></ul>
+
+
+
+<p><strong>Project Terminology</strong></p>
+
+
+
+<p>Here are a few important terms to note!</p>
+
+
+
+<ul class="wp-block-list"><li>Metadata: a set of data that describes other data (i.e., author, date published, file size, etc.)</li><li>Classification: categorizing objects (or text) into organized groups</li><li>Text cleaning: reducing complex text to simple text for more efficient use in Natural Language Processing</li></ul>
+
+
+
+<p>And a few terms were used interchangeably throughout this project!</p>
+
+
+
+<ul class="wp-block-list"><li>Description / Summary<ul><li>A condensed version of some text</li></ul></li><li>Subject / Tag / Keyword / Topic<ul><li>A single word that helps to define the text or frequently appears within the text</li></ul></li></ul>
+
+
+
+<p><strong>Project Objectives</strong></p>
+
+
+
+<p>Overall, the project had a couple of main objectives. The team wanted to train a Machine Learning model to extract subjects from Industry Documents Library video transcripts and evaluate the accuracy of the machine-generated subjects. We planned to utilize the junior interns’ datasheet they created with subjects and descriptions for over 300 videos to train the model for each tag we chose to analyze.</p>
+
+
+
+<p>(The video transcripts were generated beforehand by Google AutoML with the help of Geoffrey Boushey).</p>
+
+
+
+<p><strong>Transcript Cleaning</strong></p>
+
+
+
+<p>Once the video transcripts were created from Google AutoML, I was able to clean the text using techniques I learned from previous Data Science Initiative workshops. The <a href="https://courses.ucsf.edu/course/view.php?id=9122">“Machine Learning NLP Prep” workshop</a> techniques were especially helpful for this portion of the project. I began by setting all 324 transcripts in our dataframe to a lowercase format. This helps simplify text analysis in the long run, especially when avoiding case sensitivity complications. My next step was to remove stop words, which are common and redundant words such as articles, conjunctions, and prepositions. This was possible with the Natural Language Toolkit library for Python, which contains a list of stop words I could add to since I especially noticed ‘p.m.’ and ‘a.m.’ appearing in depositions. I continued by removing everything that isn’t alphabetic using a regular expression (or regex), a sequence of characters corresponding to a pattern to be matched. Any single characters or two character pairs were also removed. Finally, it was essential to stem words to be able to group common words without worrying about suffixes.</p>
+
+
+
+<p><strong>ML Model Creation using ID and subject/tag</strong></p>
+
+
+
+<p>After text cleaning, we set video IDs as their indices in our running dataframe to efficiently and consistently identify them. Our running dataframe consisted of a row for each of the 324 videos with columns that denoted their ID, subject words, transcript, and a category value of&nbsp; ‘0’ for ‘no’ or ‘1’ for ‘yes’ that corresponded to whether or not the video’s subjects words included the specific tag we were after in each single-tag analysis.</p>
+
+
+
+<p>To provide a more concrete example, we will use the “lawsuit” tag, which means each video was denoted with a ‘1’ in the category column if it contained the “lawsuit” tag from the junior interns’ datasheet.</p>
+
+
+
+<p>Continuing, we created training and test sets from the dataframe with a 50/50 split. This was followed by a pipeline of several operations in a sequence that included Count Vectorization and Random Forest Classification. Count Vectorization is a method in Natural Language Processing to convert text into numerical values primed for Machine Learning. This way, we can note word frequency in each word for each transcript. Furthermore, Random Forest Classification is a collection of decision trees that make binary decisions based on input and continually “bootstraps” (re-samples) from the training data set to make predictions about whether or not a video contained the “lawsuit” tag.</p>
+
+
+
+<p><strong>Features for Each Tag</strong></p>
+
+
+
+<p>We then gathered feature words and their importance values as to how they supported the model in determining if a video belonged to the “lawsuit” tag. These feature words included &#8220;exhibit,&#8221; &#8220;plaintiffs,&#8221; &#8220;counsel,&#8221; and &#8220;documents,&#8221; which change every time we run the model. It appears the less common words also slipped through, such as the company name “Mallinckrodt,” which may not appear as important in other transcript datasets relating to lawsuits.</p>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="260" height="398" data-id="5302" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture1_feature-importance1-1.png" alt="" class="wp-image-5302" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture1_feature-importance1-1.png 260w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture1_feature-importance1-1-196x300.png 196w" sizes="(max-width: 260px) 100vw, 260px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="246" height="394" data-id="5304" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture2-feature-importance2-1.png" alt="" class="wp-image-5304" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture2-feature-importance2-1.png 246w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture2-feature-importance2-1-187x300.png 187w" sizes="(max-width: 246px) 100vw, 246px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="244" height="396" data-id="5303" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture3-feature-importance3.png" alt="" class="wp-image-5303" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture3-feature-importance3.png 244w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture3-feature-importance3-185x300.png 185w" sizes="(max-width: 244px) 100vw, 244px" /></figure>
+<figcaption class="blocks-gallery-caption">Chart displaying a list of feature words such as &#8220;email,&#8221; &#8220;exhibit,&#8221; &#8220;court,&#8221; and other words, each labeled with numeric value representing the word&#8217;s importance value.</figcaption></figure>
+</div></div>
+
+
+
+<p><strong>Cross Validation and Match Probability</strong></p>
+
+
+
+<p>Moving forward, we used Cross Validation to verify that the model&#8217;s performance was not drastically different with different training and test subsets from the running dataframe. Following this process, we were able to create a dataframe that included a column “y_adj” to indicate “Not” for the video not falling under the “lawsuit” tag and an indication of “Match” otherwise. Moreover, we included two columns, “prob_no_match” and “prob_match,” that denote the model’s assessment of the probability that a video doesn’t fit under “lawsuit” or does, respectively.</p>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" decoding="async" width="574" height="364" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture4-match-probability1.png" alt="" class="wp-image-5305" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture4-match-probability1.png 574w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture4-match-probability1-300x190.png 300w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture4-match-probability1-473x300.png 473w" sizes="auto, (max-width: 574px) 100vw, 574px" /><figcaption>Chart displaying a list of video IDs and an associated numeric value representing the video&#8217;s probability match.</figcaption></figure>
+
+
+
+<p>We also ran some code that narrowed down the dataframe to videos where the model incorrectly predicted a video’s match.</p>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" decoding="async" width="942" height="196" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture5-match-probability2.png" alt="" class="wp-image-5306" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture5-match-probability2.png 942w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture5-match-probability2-300x62.png 300w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture5-match-probability2-768x160.png 768w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture5-match-probability2-500x104.png 500w" sizes="auto, (max-width: 942px) 100vw, 942px" /><figcaption>Chart displaying a list of video IDs and associated information, representing videos which had been incorrectly matched.</figcaption></figure>
+
+
+
+<p>This is where we began to run into issues with this dataset since it contained a relatively small amount of videos and, therefore, a low number of videos where the “lawsuit” tag applied. The “lawsuit” tag was filed under only 26 of the 324 videos, a mere 8 percent of the dataset. It was also quite difficult to discern an appropriate threshold for whether or not a video transcript should be marked as a match to a tag because the videos that the model marked incorrectly usually appear to have significantly different probabilities for matching.</p>
+
+
+
+<p>This caused our models for tags with counts under 25 or so to result in a non-existent F-score, as well as precision and recall, but a high accuracy which I will explain shortly. Meanwhile, an F-score is critical in providing an overall measure or metric for the performance of a Machine Learning model using its precision and recall.</p>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" decoding="async" width="416" height="450" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture6-tag-count.png" alt="" class="wp-image-5307" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture6-tag-count.png 416w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture6-tag-count-277x300.png 277w" sizes="auto, (max-width: 416px) 100vw, 416px" /><figcaption>Chart displaying a list of tags including &#8220;tobacco,&#8221; &#8220;marketing,&#8221; &#8220;lawsuit,&#8221; and other words, and a numeric value representing how many times the tag appears.</figcaption></figure>
+
+
+
+<p><strong>Precision &amp; Recall</strong></p>
+
+
+
+<p>Diving into Precision and Recall, Precision can be defined as the proportion of correct positive predictions in the number of predicted positive values, while Recall is the proportion of correct positive predictions in the number of actual positive values.</p>
+
+
+
+<p>In this project, the positive values would be video matches for a tag, so in terms of the project, precision is the proportion of correct match predictions out of the predicted matches, and recall is the proportion of correct match predictions out of the actual, true matches. In addition, Accuracy refers to the comprehensive correctness of all positive and negative predictions.</p>
+
+
+
+<p>This image may also help visualize the precision/recall relationship:</p>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" decoding="async" width="370" height="670" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture7-precision-recall.png" alt="" class="wp-image-5308" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture7-precision-recall.png 370w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture7-precision-recall-166x300.png 166w" sizes="auto, (max-width: 370px) 100vw, 370px" /><figcaption>Graphic illustrating the concept of precision (how many retrieved items are relevant) vs the concept of recall (how many relevant items are retrieved).</figcaption></figure>
+
+
+
+<p><strong>Thresholds</strong></p>
+
+
+
+<p>Another step we took in this project’s analysis was creating precision-recall curves for specified thresholds by the Scikit-learn library that allows for Machine Learning in Python. This way, we could recognize that as the threshold for the probability of a match increases, the precision slowly increases from about 90 percent to 100 percent. In comparison, the recall decreases from 100 percent to 0 percent.</p>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="434" height="334" data-id="5309" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture8-threshold1.png" alt="" class="wp-image-5309" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture8-threshold1.png 434w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture8-threshold1-300x231.png 300w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture8-threshold1-390x300.png 390w" sizes="auto, (max-width: 434px) 100vw, 434px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="444" height="334" data-id="5310" src="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture9-threshold2.png" alt="" class="wp-image-5310" srcset="../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture9-threshold2.png 444w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture9-threshold2-300x226.png 300w, ../../../../wp-content/uploads/2023/09/NoelSalmeron-Picture9-threshold2-399x300.png 399w" sizes="auto, (max-width: 444px) 100vw, 444px" /></figure>
+<figcaption class="blocks-gallery-caption">Two charts illustrating precision-recall curves.</figcaption></figure>
+
+
+
+<p>This can be explained by referring back to the definitions of precision and recall! Suppose the threshold for the probability of a match increases and becomes stricter. In that case, precision (the proportion of correct matches out of predicted matches) will only increase as the requirement for a video to be labeled as a match becomes stricter. Regarding the recall (the proportion of correct match predictions out of the actual matches), it becomes clear that since there is more precision, there will be no videos incorrectly marked as matches or any videos correctly marked as matches.</p>
+
+
+
+<p><strong>Opportunities for Further Research</strong></p>
+
+
+
+<p>There were a few concerns and curiosities that I ended the beginning of this project with since it was simply a pilot, and there is much more to be explored. This includes more text cleaning in subjects/tags and transcripts to make the Natural Language Processing as streamlined as possible. Additionally, it would be crucial to explore this same analysis of subjects/tags for descriptions/summaries that we could not get to. Having a fully-developed human-made datasheet for a larger dataset to explore would also be incredibly useful.</p>
+
+
+
+<p><strong>Conclusion</strong></p>
+
+
+
+<p>I am pleased to have been a part of this team with UCSF’s Industry Documents Library and Data Science Initiative this summer, as it provided me with extensive real-world experience in data analysis, machine learning, and natural language processing. It truly puts into perspective how much valuable data is out there and all of the fascinating analysis you can conduct.</p>
+
+
+
+<p>Prior to this summer, I had worked with various datasets in classes, but I felt inspired by the IDL’s endeavor to enhance its vast collection and make it easier for users to search through documents with supplementary metadata. I can especially appreciate this as I have spent countless hours sifting through documents for research papers in the past. Once the subject and description generations are in full effect, I can only imagine the potential of this data and what it could lead to, as I hope it supports other people’s work.</p>
+
+
+
+<p>I also tremendously appreciate the time and effort the junior interns, Adam and Bryce, put into populating their datasheet after watching hundreds of videos. Their work was foundational to getting this project running.</p>
+
+
+
+<p>I also want to express my appreciation for Geoffrey and Rebecca throughout this summer for working closely with me, making me feel welcome, and addressing any concerns or questions I had during my fellowship. I am incredibly grateful for this work experience with exceptional communication, collaboration, and kindness.</p>
+
+
+
+<p>Thank you to UCSF and everyone on this team for an enjoyable and fascinating fellowship experience!</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<h1 class="wp-block-heading">Addendum: When Should We Apply a Subject Tag to an Uncategorized Document?</h1>
+
+
+
+<p><em>By Geoff Boushey, UCSF Library Head of Data Engineering</em></p>
+
+
+
+<p><strong>Overview</strong></p>
+
+
+
+<p>Noel described the process for creating a machine learning (ML) model, analyzing the features that go into classifying a document, and applying the model to estimate the probability that a transcript generated from the Tobacco or Opioid collection should be included in a subject tag, such as &#8220;marketing,&#8221; &#8220;legal,&#8221; or &#8220;health.&#8221;</p>
+
+
+
+<p>Because most tags in the collection show up in less than 10% of the records in our training and testing set, we shouldn’t expect most tags to apply to most records. As a result, we’re looking for a relatively rare event. If we were only concerned with the overall accuracy or our model, we could achieve 90% effectiveness by never applying a specific tag to a record.</p>
+
+
+
+<p>The output from our machine learning model reflects this low probability. By default, our machine learning model would only include a tag if it estimates that the probability of a match exceeds 50%. Because we’re trying to predict a relatively rare event (again, a specific tag would only apply to at most 10% of the records in a collection), it’s unlikely that we’ll have many predictions that exceed this threshold. In fact, when we test our model, we can see that records that clearly (based on human observation) belong to a specific category may have no more than a 30-40% estimated probability of belonging to this category according to the ML model. While this is below the default 50% threshold, it does represent a much higher probability than random chance, (30-40% vs 10%).</p>
+
+
+
+<p>We don’t want to erroneously include a tag too often, or it will become clutter. We don’t want to erroneously exclude it too often, or researchers will miss out on relevant record matches. We may want to lower the threshold for determining when to apply a tag to a particular record, but the right threshold isn’t always clear, and can vary depending on the frequency of a tag, the accuracy of our model, and the scenario-dependent benefit or harm of false positives versus false negatives.</p>
+
+
+
+<p>The harm of false positives or negatives depends heavily on the research or use scenario. For example, a researcher who wants to retrieve all reasonably likely matches and is not concerned with the inclusion of a few documents that are not related to litigation might want to set the threshold very low, even below 10%. Alternatively, a researcher might simply wish to sample a small number of litigation-related documents with a very high level of accuracy. In this case, a high threshold would be more beneficial.</p>
+
+
+
+<p>Precision and Recall curves can help find an optimal threshold that strikes the right balance between false positives and false negatives.</p>
+
+
+
+<p><strong>Technical Considerations and Limitations</strong></p>
+
+
+
+<p>Because our initial dataset is small (only 300 human reviewed records are available for supervised classification), and many of the tags only show up in 10% of the records, we limit our initial analysis to a small set of metadata tags. Because these tags are human-generated and do not conform to a limited and controlled vocabulary, there is inconsistency in the training data as well. Some tags are redundant, showing up in clusters (legal and litigation, for instance, have a 95%+ overlap). Other times, two categories that might be better approached as a single category cause a split that may greatly reduce the effectiveness of an ML based classifier. Human ambiguity is often amplified when used to train ML models, and we see that effect at work here.</p>
+
+
+
+<p><strong>Precision-Recall Curves</strong></p>
+
+
+
+<p>Because there is a class imbalance between positive and negative categorization (including versus excluding a tag) and false positives are unlikely to be a serious problem (though, as discussed above, there may be some scenarios, such as sampling, where we would want to avoid them), we&#8217;ll take a look at precision-recall curves for a few of the more commonly occurring tags.</p>
+
+
+
+<p>For quick reference, *Precision* refers to how often a positive classification was correct. For example, if our model predicted that a &#8220;Legal&#8221; tag should apply correctly 9 times and incorrectly 1 time, the Precision would be 90%. *Recall* refers to how often a positive classification was accurately detected. For example, if 10 records should have been classified as Legal, and our model detected 8 of them, our recall rate would be 80%. Ideally, we would like to strike some kind of balance between these two metrics, something we can achieve by raising or lowering the probability threshold for including a record in a tag. For example, if our model assigned a 30% chance that a particular record should be classified as &#8220;Legal&#8221;, we might or might not set that assignment based on whether we are trying to improve precision or recall.</p>
+
+
+
+<p>For a more technical/mathematical discussion of Precision and Recall, please consult the scikit learn documentation at: </p>
+
+
+
+<p><a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html">https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html</a></p>
+
+
+
+<p><strong>Workbook</strong></p>
+
+
+
+<p>The jupyter notebook implementing a Precision-Recall visualization for the “Legal” tag is</p>
+
+
+
+<p>available at:</p>
+
+
+
+<p><a href="https://github.com/geoffswc/IDL-DSOS-2023/blob/main/Precision-Recall-Tag.ipynb">https://github.com/geoffswc/IDL-DSOS-2023/blob/main/Precision-Recall-Tag.ipynb</a></p>
+
+
+
+<p>This workbook uses the scikit-plot module from scikit-learn to generate a precison-recall curve for a tag used in the classification model. Keep in mind that there isn&#8217;t much benefit to analyzing tags that show up in less than 10% of the records, and some tags may result in an error, as positive observations may be so rare (fewer than 1-2% of the records) that there is insufficient data to train or apply an ML model (a random test/train split may have *no* observations for a rare tag such a small dataset).</p>
+
+
+
+<p>The visualizations generated by this workbook are available in the next section.</p>
+
+
+
+<p><strong>Visualization and Interpretation</strong></p>
+
+
+
+<p>This section displays the PR curve for &#8220;Legal&#8221;, a tag that shows up in approximately 10% of the training records. Keep in mind that common tags like &#8220;Tobacco&#8221;, which show up in 90% of the records, are auto-assigned based on the source of the collection, and do not represent the common use case. As a result, “Legal” will provide a better overview for a common tag that does not apply to most records, and performs relatively well in our predictive model.</p>
+
+
+
+<p><strong>Precision-Recall</strong></p>
+
+
+
+<p>The precision recall curve for Legal indicates a wide threshold range that preserves usable precision and recall levels. Very high or low thresholds cause degradation of model performance, but precision and recall above 80% are available with flexibility to optimize for one or the other.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="671" src="../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall-1024x671.png" alt="" class="wp-image-5313" srcset="../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall-1024x671.png 1024w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall-300x197.png 300w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall-768x503.png 768w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall-458x300.png 458w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture1-precision-recall.png 1230w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /><figcaption>Graph showing the precision-recall curve for the tag &#8220;Legal&#8221;</figcaption></figure>
+
+
+
+<p><strong>Precision/Recall-Threshold</strong></p>
+
+
+
+<p>This chart plots both precision and recall curves on the Y axis with the threshold level on the X axis. We see a rapid improvement of precision with a gradual, near-linear decrease in recall, indicating an effective threshold range well below 50%.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="665" src="../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold-1024x665.png" alt="" class="wp-image-5314" srcset="../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold-1024x665.png 1024w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold-300x195.png 300w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold-768x499.png 768w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold-462x300.png 462w, ../../../../wp-content/uploads/2023/09/GeoffBoushey-Picture2-precision-recall-threshold.png 1182w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /><figcaption>Graph plotting the precision and recall curves (on the Y axis) with the threshold level (on the X axis).</figcaption></figure>
+
+
+
+<p><strong>Production Application</strong></p>
+
+
+
+<p>Although our current data set is small, these results suggest that there is some value in using a supervised classification model to extend metadata to uncategorized documents based on ML generated transcript, though there are a number of challenges, and integrating these techniques into production would involve a number of decisions that are outside the scope of this pilot.</p>
+
+
+
+<p><strong>Challenges</strong></p>
+
+
+
+<p>A production rollout of an ML based model similar to this pilot would likely run into a number of issues with scale, such as:</p>
+
+
+
+<ul class="wp-block-list"><li>Training Data: our supervised machine learning model requires a set of categorized transcripts for training. This is a very time and labor intensive undertaking. We may not be able to create a sufficiently large and broad training dataset to create a meaningful model that covers even the most common tags.</li></ul>
+
+
+
+<ul class="wp-block-list"><li>Varying Thresholds: The ideal threshold will vary based on the model performance for each individual tag and the research objectives. This variance, combined with the scale of processing required, may make customizable searches based on tag probability unrealistic in a production system.</li></ul>
+
+
+
+<ul class="wp-block-list"><li>Availability of Transcripts: The tobacco, opioid, and other industry documents collections contain a large number of files (current estimate is 18 million), many are video or audio files without transcriptions. Without transcriptions available, it won’t be possible to apply the results of an ML model to make predictions for uncategorized documents.</li></ul>
+
+
+
+<p><strong>Recommendations</strong></p>
+
+
+
+<p>This pilot does provide a template for an interesting and promising approach, and researchers may be interested in building their own ML models to analyze the transcripts in the collections.</p>
+
+
+
+<p>We could provide some of this utility without a full production integration through the following:</p>
+
+
+
+<ul class="wp-block-list"><li>Pre-Built Transcription Datasets: The <a href="https://www.industrydocuments.ucsf.edu/research-tools/api/">Industry Documents Library website</a> currently provides pre-built transcription datasets for many image record collections. A similar initiative to provide transcriptions for video and audio would provide substantial benefit for researchers, independent of the ML based classification model.</li></ul>
+
+
+
+<ul class="wp-block-list"><li>Classification Probability Estimates: Instead of integrating classification probabilities or tags into search, we could provide the ML output for each record in a pre-built dataset. This would leave the decision for setting a threshold up to researchers, but it would avoid the need to re-generate results based on model performance and researcher scenario for each tag. This approach might allow researchers to benefit from partial information.</li></ul>
+
+
+
+<ul class="wp-block-list"><li>Generalized ML Models: Several AI tools, such as Google AutoML AI, do provide pre-trained models that can provide categorization. Because these models wouldn’t be trained specifically on our metadata, they may not capture the kind of classification most relevant to researchers, but they would eliminate the need for the very labor intensive generation of a training data set.</li></ul>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in Uncategorized by <a href="../../../../author/ktasker/index.html">Kate Tasker</a>. Bookmark the <a href="../../../../index.html%3Fp=5299.html" title="Permalink to Evaluating Automated Transcription Accuracy: A Data Science Fellowship Report" rel="bookmark">permalink</a>.
+		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-5299 -->
+
+						<div id="comments">
+	
+	
+	
+	
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon">
+
+			
+
+			<div id="site-generator">
+												<a href="https://wordpress.org/" class="imprint" title="Semantic Personal Publishing Platform">
+					Proudly powered by WordPress				</a>
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+
+<style id='core-block-supports-inline-css' type='text/css'>
+.wp-block-gallery.wp-block-gallery-1{--wp--style--unstable-gallery-gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );}.wp-block-gallery.wp-block-gallery-2{--wp--style--unstable-gallery-gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );}
+</style>
+
+
+</body>
+</html>
