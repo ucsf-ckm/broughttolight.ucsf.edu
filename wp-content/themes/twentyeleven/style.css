@@ -64,7 +64,7 @@ a img {
 	border: 0;
 }
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+footer, header, menu, nav, section {
 	display: block;
 }
 
@@ -79,7 +79,7 @@ body {
 	margin: 2em auto;
 	max-width: 1000px;
 }
-#branding hgroup {
+#branding > h1, #branding > h2 {
 	margin: 0 7.6%;
 }
 #access div {
@@ -2650,7 +2650,7 @@ p.comment-form-comment {
 		border-top: none !important;
 		padding: 0;
 	}
-	#branding hgroup {
+	#branding > h1, #branding > h2 {
 		margin: 0;
 	}
 	#site-title a {
