@@ -565,14 +565,7 @@ a.assistive-text:focus,
 -------------------------------------------------------------- */
 
 #access {
-	background: #222; /* Show a solid color for older browsers */
-	background: -moz-linear-gradient(#252525, #0a0a0a);
-	background: -o-linear-gradient(#252525, #0a0a0a);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#252525), to(#0a0a0a)); /* older webkit syntax */
-	background: -webkit-linear-gradient(#252525, #0a0a0a);
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	background: #222;
 	clear: both;
 	display: block;
 	float: left;
