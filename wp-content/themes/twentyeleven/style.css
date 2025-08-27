@@ -1794,6 +1794,11 @@ video {
 	padding-right: .5em;
 }
 
+/* Side nav */
+ul.wp-block-archives-list li {
+  line-height: 25px;
+}
+
 
 /* =Widgets
 ----------------------------------------------- */
