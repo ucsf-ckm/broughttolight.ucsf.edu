@@ -178,7 +178,7 @@ p.has-drop-cap:not(:focus)::first-letter {
 }
 
 .wp-block-file .wp-block-file__button:active {
-	background: #1982d1;
+	background: #0071ad;
 	color: #bfddf3;
 }
 
@@ -288,7 +288,7 @@ p.has-drop-cap:not(:focus)::first-letter {
 }
 
 .wp-block-button__link:active {
-	background: #1982d1;
+	background: #0071ad;
 	color: #bfddf3;
 }
 
@@ -400,11 +400,11 @@ p.has-drop-cap:not(:focus)::first-letter {
 --------------------------------------------------------------*/
 
 .has-blue-color {
-	color: #1982d1;
+	color: #0071ad;
 }
 
 .has-blue-background-color {
-	background-color: #1982d1;
+	background-color: #0071ad;
 }
 
 .has-black-color {
