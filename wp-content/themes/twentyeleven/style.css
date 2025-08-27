@@ -490,11 +490,6 @@ input#searchsubmit {
 /* Links */
 a {
 	color: #1982d1;
-	text-decoration: none;
-}
-a:focus,
-a:active,
-a:hover {
 	text-decoration: underline;
 }
 
