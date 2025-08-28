@@ -1092,9 +1092,7 @@ and remove the padding rules below.
 	text-transform: uppercase;
 	top: -5px;
 }
-.entry-header hgroup .entry-title {
-	padding-top: 15px;
-}
+
 article.format-aside .entry-content,
 article.format-link .entry-content,
 article.format-status .entry-content {
