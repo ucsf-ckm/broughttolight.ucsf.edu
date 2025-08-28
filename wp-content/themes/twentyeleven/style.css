@@ -731,10 +731,6 @@ a.assistive-text:focus,
 .no-results {
 	border-bottom: none;
 }
-.blog .sticky .entry-header .entry-meta {
-	clip-path: inset(50%);
-	position: absolute !important;
-}
 .entry-title,
 .entry-header .entry-meta {
 	padding-right: 76px;
