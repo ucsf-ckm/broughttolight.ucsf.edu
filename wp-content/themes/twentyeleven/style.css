@@ -341,7 +341,7 @@ hr {
 
 /* Text elements */
 p {
-	margin-bottom: 1.625em;
+	margin-bottom: 1rem;
 }
 ul, ol {
 	margin: 0 0 1.625em 2.5em;
