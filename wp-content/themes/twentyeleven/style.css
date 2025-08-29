@@ -112,7 +112,6 @@ body {
 }
 .singular .entry-header,
 .singular .entry-content,
-.singular footer.entry-meta,
 .singular #comments-title {
 	margin: 0 auto;
 	width: 68.9%;
@@ -253,7 +252,6 @@ body {
 /* Remove the margin on singular articles */
 .one-column.singular .entry-header,
 .one-column.singular .entry-content,
-.one-column.singular footer.entry-meta,
 .one-column.singular #comments-title {
 	width: 100%;
 }
@@ -1280,12 +1278,6 @@ blockquote.pull.alignright {
 	margin: 0;
 	padding-bottom: 1em;
 }
-.indexed.format-image footer.entry-meta {
-	background: #ddd;
-	overflow: hidden;
-	padding: 4%;
-	max-width: 96%;
-}
 .indexed.format-image div.entry-meta {
 	display: inline-block;
 	float: left;
@@ -1299,12 +1291,6 @@ blockquote.pull.alignright {
 .indexed.format-image .entry-meta span.tag-links,
 .indexed.format-image .entry-meta span.comments-link {
 	display: block;
-}
-.indexed.format-image footer.entry-meta a {
-	color: #444;
-}
-.indexed.format-image footer.entry-meta a:hover {
-	color: #fff;
 }
 #content .indexed.format-image img {
 	border: none;
@@ -2324,28 +2310,6 @@ p.comment-form-comment {
 	margin-right: 0;
 }
 
-/* Site Generator Line */
-#site-generator {
-	background: #f9f9f9;
-	border-top: 1px solid #ddd;
-	color: #666;
-	font-size: 12px;
-	line-height: 2.2em;
-	padding: 2.2em 0.5em;
-	text-align: center;
-}
-#site-generator a {
-	color: #555;
-	font-weight: bold;
-}
-#site-generator span[role=separator] {
-	padding: 0 0.25em 0 0.5em
-}
-#site-generator span[role=separator]::before {
-	content: '\007c';
-}
-
-
 /* =Responsive Structure
 ----------------------------------------------- */
 
@@ -2424,7 +2388,6 @@ p.comment-form-comment {
 	/* Remove the margin on singular articles */
 	.singular .entry-header,
 	.singular .entry-content,
-	.singular footer.entry-meta,
 	.singular #comments-title {
 		width: 100%;
 	}
@@ -2601,10 +2564,6 @@ p.comment-form-comment {
 		background: none !important;
 		font-size: 10pt;
 	}
-	footer.entry-meta a[rel=bookmark]:link:after,
-	footer.entry-meta a[rel=bookmark]:visited:after {
-		content: " [" attr(href) "] "; /* Show URLs */
-	}
 	#page {
 		clear: both !important;
 		display: block !important;
@@ -2662,7 +2621,6 @@ p.comment-form-comment {
 	}
 	.singular .entry-header,
 	.singular .entry-content,
-	.singular footer.entry-meta,
 	.singular #comments-title {
 		margin: 0;
 		width: 100%;
