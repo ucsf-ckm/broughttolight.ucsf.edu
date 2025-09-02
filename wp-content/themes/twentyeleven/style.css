@@ -72,18 +72,28 @@ footer, header, menu, nav, section {
 /* =Structure
 ----------------------------------------------- */
 
-body {
-	padding: 0 2em;
+#branding h1 {
+	color: #052049;
+    font-family: "Crimson Text", serif;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	white-space: nowrap;
 }
-#page {
-	margin: 2em auto;
-	max-width: 1000px;
-}
-#branding > h1, #branding > h2 {
-	margin: 0 7.6%;
+#branding h2 {
+	color: #052049;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	white-space: nowrap;
 }
 #access div {
-	margin: 0 7.6%;
+	margin: 0 auto;
+	padding-left: 15px;
+	max-width: 1230px;
 }
 #primary {
 	float: left;
@@ -185,16 +195,9 @@ body, input, textarea {
 	font-weight: 300;
 }
 body {
-	background: #e2e2e2;
-}
-#page {
 	background: #fff;
 }
 
-/* Headings */
-h1,h2,h3,h4,h5,h6 {
-	clear: both;
-}
 hr {
 	background-color: #ccc;
 	border: 0;
@@ -386,24 +389,35 @@ a.assistive-text:focus,
 	/* Above WP toolbar. */
 }
 
-/* =Header
------------------------------------------------ */
+/* Header */
 
 #branding {
-	border-top: 2px solid #bbb;
-	padding-bottom: 10px;
-	position: relative;
-	z-index: 9999;
+	width: 100%;
+	height: 144px;
+	flex-shrink: 0;
+	background: #E6E9ED;
+}
+#branding > div {
+	margin-right: auto;
+  	margin-left: auto;
+	padding-top: 21px;
+  	padding-left: 15px;
+  	padding-right: 15px;
+  	max-width: 1230px;
+}
+#branding img {
+	float: right;
+	width: 150px;
+	height: 34px;
+	flex-shrink: 0;
+	fill: #000;
+	padding-top: 15px;
 }
 #site-title {
 	margin-right: 270px;
-	padding: 3.65625em 0 0;
 }
 #site-title a {
-	color: #111;
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 36px;
+	color: #052049;
 	text-decoration: none;
 }
 #site-title a:hover,
@@ -425,7 +439,7 @@ a.assistive-text:focus,
 	clear: both;
 	display: block;
 	float: left;
-	margin: 0 auto 6px;
+	margin: -40px auto 6px;
 	width: 100%;
 }
 #access ul {
@@ -503,6 +517,8 @@ a.assistive-text:focus,
 #main {
 	clear: both;
 	padding: 1.625em 0 0;
+	max-width: 1000px;
+	margin: auto;
 }
 .page-title {
 	color: #666;
@@ -1114,7 +1130,6 @@ blockquote.pull.alignright {
 	opacity: 0.8;
 }
 
-
 /* =error404
 ----------------------------------------------- */
 
@@ -1302,106 +1317,6 @@ section.feature-image.large img {
 	height: auto;
 	max-width: 117.9%;
 	padding: 0 0 6px;
-}
-
-/* Featured Slider */
-.featured-posts {
-	border-bottom: 1px solid #ddd;
-	display: block;
-	height: 328px;
-	margin: 1.625em -8.9% 20px;
-	max-width: 1000px;
-	padding: 0;
-	position: relative;
-	overflow: hidden;
-}
-.featured-posts .showcase-heading {
-	padding-left: 8.9%;
-}
-.featured-posts section.featured-post {
-	background: #fff;
-	height: 288px;
-	left: 0;
-	margin: 0;
-	position: absolute;
-	top: 30px;
-	width: auto;
-}
-.featured-posts section.featured-post.large {
-	max-width: 100%;
-	overflow: hidden;
-}
-.featured-posts section.featured-post {
-	-webkit-transition-duration: 200ms;
-	-webkit-transition-property: opacity, visibility;
-	-webkit-transition-timing-function: ease;
-	-moz-transition-duration: 200ms;
-	-moz-transition-property: opacity, visibility;
-	-moz-transition-timing-function: ease;
-}
-.featured-posts section.featured-post {
-	opacity: 0;
-	visibility: hidden;
-}
-.featured-posts #featured-post-1 {
-	opacity: 1;
-	visibility: visible;
-}
-.featured-post .feature-text:after,
-.featured-post .feature-image.small:after {
-	content: ' ';
-	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
-	width: 100%;
-	height: 45px;
-	position: absolute;
-	top: 230px;
-}
-.featured-post .feature-image.small:after {
-	top: 253px;
-}
-#content .feature-slider {
-	top: 5px;
-	right: 8.9%;
-	overflow: visible;
-	position: absolute;
-}
-.feature-slider ul {
-	list-style-type: none;
-	margin: 0;
-}
-.feature-slider li {
-	float: left;
-	margin: 0 6px;
-}
-.feature-slider a {
-	background: #3c3c3c;
-	background: rgba(60,60,60,0.9);
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-webkit-box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5), inset 0 0 2px rgba(255,255,255,0.5);
-	-moz-box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5), inset 0 0 2px rgba(255,255,255,0.5);
-	box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5), inset 0 0 2px rgba(255,255,255,0.5);
-	display: block;
-	width: 14px;
-	height: 14px;
-}
-.feature-slider a .feature-slider-tooltip {
-	display: block;
-	width: 14px;
-	height: 14px;
-}
-.feature-slider a.active {
-	background: #0071ad;
-	-webkit-box-shadow: inset 1px 1px 5px rgba(0,0,0,0.4), inset 0 0 2px rgba(255,255,255,0.8);
-	-moz-box-shadow: inset 1px 1px 5px rgba(0,0,0,0.4), inset 0 0 2px rgba(255,255,255,0.8);
-	box-shadow: inset 1px 1px 5px rgba(0,0,0,0.4), inset 0 0 2px rgba(255,255,255,0.8);
-	cursor: default;
-	opacity: 0.5;
 }
 
 /* Recent Posts */
@@ -2242,8 +2157,8 @@ p.comment-form-comment {
 	body, input, textarea {
 		font-size: 13px;
 	}
-	#site-title a {
-		font-size: 24px;
+	#branding img {
+		display: none;
 	}
 	#site-description {
 		font-size: 12px;
@@ -2271,10 +2186,6 @@ p.comment-form-comment {
 	}
 	blockquote.pull {
 		font-size: 17px;
-	}
-	/* Reposition the site title and description slightly */
-	#site-title {
-		padding: 5.30625em 0 0;
 	}
 	#site-title,
 	#site-description {
@@ -2344,9 +2255,6 @@ p.comment-form-comment {
 	#page {
 		margin-top: 0;
 	}
-	#branding {
-		border-top: none;
-	}
 }
 
 
@@ -2364,16 +2272,6 @@ p.comment-form-comment {
 		float: none !important;
 		max-width: 100%;
 		position: relative !important;
-	}
-	#branding {
-		border-top: none !important;
-		padding: 0;
-	}
-	#branding > h1, #branding > h2 {
-		margin: 0;
-	}
-	#site-title a {
-		font-size: 21pt;
 	}
 	#site-description {
 		font-size: 10pt;
