@@ -191,8 +191,7 @@ footer, header, menu, nav, section {
 
 body, input, textarea {
 	color: #373737;
-	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: 300;
+	font: 15px Roboto, Arial, Helvetica, sans-serif;
 }
 body {
 	background: #fff;
