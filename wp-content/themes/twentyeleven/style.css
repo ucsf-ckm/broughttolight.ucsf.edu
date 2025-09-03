@@ -101,13 +101,13 @@ footer, header, menu, nav, section {
 	width: 100%;
 }
 #content {
-	margin: 0 34% 0 7.6%;
-	width: 58.4%;
+	margin: 0 15px;
+	width: 75%;
 }
 #secondary {
 	float: right;
-	margin-right: 7.6%;
-	width: 18.8%;
+	margin: 0 0 0 30px;
+	width: 18%;
 }
 
 /* Singular */
