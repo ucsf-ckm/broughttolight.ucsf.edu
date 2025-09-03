@@ -123,8 +123,7 @@ footer, header, menu, nav, section {
 .singular .entry-header,
 .singular .entry-content,
 .singular #comments-title {
-	margin: 0 auto;
-	width: 68.9%;
+	margin: 0 15px;
 }
 
 /* Attachments */
@@ -134,7 +133,6 @@ footer, header, menu, nav, section {
 }
 .singular .image-attachment .entry-description {
 	margin: 0 auto;
-	width: 68.9%;
 }
 
 /* Showcase */
@@ -1707,7 +1705,6 @@ section.ephemera .entry-title a span {
 .commentlist {
 	list-style: none;
 	margin: 0 auto;
-	width: 68.9%;
 }
 .content .commentlist,
 .page-template-sidebar-page-php .commentlist {
@@ -1821,131 +1818,8 @@ a.comment-reply-link > span {
 	margin-left: 102px;
 	width: auto;
 }
-/* And a full-width comment form */
-.page-template-sidebar-page-php #respond {
-	width: auto;
-}
 
 /* Comment Form */
-#respond {
-	background: #ddd;
-	border: 1px solid #d3d3d3;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	margin: 0 auto 1.625em;
-	padding: 1.625em;
-	position: relative;
-	width: 68.9%;
-}
-#respond input[type="text"],
-#respond textarea {
-	background: #fff;
-	border: 4px solid #eee;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
-	-moz-box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
-	box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
-	position: relative;
-	padding: 10px;
-	text-indent: 80px;
-}
-#respond .comment-form-author,
-#respond .comment-form-email,
-#respond .comment-form-url,
-#respond .comment-form-comment {
-	position: relative;
-}
-#respond .comment-form-author label,
-#respond .comment-form-email label,
-#respond .comment-form-url label,
-#respond .comment-form-comment label {
-	background: #eee;
-	-webkit-box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
-	-moz-box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
-	box-shadow: 1px 2px 2px rgba(204,204,204,0.8);
-	color: #555;
-	display: inline-block;
-	font-size: 13px;
-	left: 4px;
-	min-width: 60px;
-	padding: 4px 10px;
-	position: relative;
-	top: 40px;
-	z-index: 1;
-}
-#respond input[type="text"]:focus,
-#respond textarea:focus {
-	text-indent: 0;
-	z-index: 1;
-}
-#respond textarea {
-	resize: vertical;
-	width: 95%;
-}
-#respond .comment-form label .required,
-#respond .comment-form .comment-notes .required,
-#respond .comment-form .logged-in-as .required {
-	color: #bd3500;
-	font-size: 22px;
-	font-weight: bold;
-}
-#respond .comment-form-author .required,
-#respond .comment-form-email .required,
-#respond .comment-form-url .required,
-#respond .comment-form-comment .required {
-	float: right;
-	margin-left: 4px;
-}
-#respond .comment-form .comment-notes .required,
-#respond .comment-form .logged-in-as .required {
-	vertical-align: middle;
-}
-#respond .comment-notes,
-#respond .logged-in-as {
-	font-size: 13px;
-}
-#respond p {
-	margin: 10px 0;
-}
-#respond .form-submit {
-	float: right;
-	margin: -20px 0 10px;
-}
-#respond input#submit {
-	background: #222;
-	border: none;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-	color: #eee;
-	cursor: pointer;
-	font-size: 15px;
-	margin: 20px 0;
-	padding: 5px 42px 5px 22px;
-	position: relative;
-	left: 30px;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
-}
-#respond input#submit:active {
-	background: #0071ad;
-	color: #bfddf3;
-}
-#respond #cancel-comment-reply-link {
-	color: #666;
-	margin-left: 10px;
-	text-decoration: none;
-}
-#respond .logged-in-as a:hover,
-#respond #cancel-comment-reply-link:hover {
-	text-decoration: underline;
-}
-.commentlist #respond {
-	margin: 1.625em 0 0;
-	width: auto;
-}
 #reply-title {
 	color: #373737;
 	font-size: 24px;
@@ -1969,20 +1843,6 @@ a.comment-reply-link > span {
 #cancel-comment-reply-link:active,
 #cancel-comment-reply-link:hover {
 	color: #ff4b33;
-}
-#respond label {
-	line-height: 2.2em;
-}
-#respond input[type=text] {
-	display: block;
-	height: 24px;
-	width: 75%;
-}
-#respond p {
-	font-size: 12px;
-}
-#respond #wp-comment-cookies-consent {
-	margin: 0 10px 0 0;
 }
 p.comment-form-comment {
 	margin: 0;
@@ -2133,10 +1993,6 @@ p.comment-form-comment {
 		margin-left: 102px;
 		width: auto;
 	}
-	/* And a full-width comment form */
-	#respond {
-		width: auto;
-	}
 	/* No need to float footer widgets at this size */
 	#colophon #supplementary .widget-area {
 		float: none;
@@ -2222,10 +2078,6 @@ p.comment-form-comment {
 		padding: 0;
 		position: absolute;
 		top: 2.2em;
-	}
-	/* Use the available space in the smaller comment form */
-	#respond input[type="text"] {
-		width: 95%;
 	}
 	#content .gallery-columns-3 .gallery-item {
 		width: 31%;
@@ -2331,9 +2183,6 @@ p.comment-form-comment {
 		border-top: none;
 		margin: 2.2em 0 0;
 		padding: 0;
-	}
-	#respond {
-		display: none;
 	}
 	.widget-area {
 		display: none;
