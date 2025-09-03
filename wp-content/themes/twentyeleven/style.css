@@ -93,7 +93,7 @@ footer, header, menu, nav, section {
 #access div {
 	margin: 0 auto;
 	padding-left: 15px;
-	max-width: 1230px;
+	max-width: 1200px;
 }
 #primary {
 	float: left;
@@ -402,7 +402,7 @@ a.assistive-text:focus,
 	padding-top: 21px;
   	padding-left: 15px;
   	padding-right: 15px;
-  	max-width: 1230px;
+  	max-width: 1200px;
 }
 #branding img {
 	float: right;
