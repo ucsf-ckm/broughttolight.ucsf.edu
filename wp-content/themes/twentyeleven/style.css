@@ -116,7 +116,7 @@ footer, header, menu, nav, section {
 }
 .singular #content,
 .left-sidebar.singular #content {
-	margin: 0 7.6%;
+	margin: 0 auto;
 	position: relative;
 	width: auto;
 }
@@ -144,7 +144,7 @@ footer, header, menu, nav, section {
 }
 .page-template-showcase-php #content,
 .left-sidebar.page-template-showcase-php #content {
-	margin: 0 7.6%;
+	margin: 0 auto;
 	width: auto;
 }
 .page-template-showcase-php section.recent-posts {
@@ -164,7 +164,7 @@ footer, header, menu, nav, section {
 	margin: 0;
 }
 .error404 #primary #content {
-	margin: 0 7.6%;
+	margin: 0 auto;
 	width: auto;
 }
 
@@ -394,7 +394,6 @@ a.assistive-text:focus,
 #branding {
 	width: 100%;
 	height: 144px;
-	flex-shrink: 0;
 	background: #E6E9ED;
 }
 #branding > div {
@@ -409,9 +408,9 @@ a.assistive-text:focus,
 	float: right;
 	width: 150px;
 	height: 34px;
-	flex-shrink: 0;
 	fill: #000;
 	padding-top: 15px;
+	padding-right: 15px;
 }
 #site-title {
 	margin-right: 270px;
@@ -2044,7 +2043,7 @@ p.comment-form-comment {
 @media (max-width: 800px) {
 	/* Simplify the basic layout */
 	#main #content {
-		margin: 0 7.6%;
+		margin: 0 auto;
 		width: auto;
 	}
 	#nav-below {
@@ -2053,7 +2052,7 @@ p.comment-form-comment {
 	}
 	#main #secondary {
 		float: none;
-		margin: 0 7.6%;
+		margin: 0 auto;
 		width: auto;
 	}
 	/* Simplify the showcase template */
