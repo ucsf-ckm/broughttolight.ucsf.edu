@@ -431,7 +431,7 @@ a.assistive-text:focus,
 -------------------------------------------------------------- */
 
 #access {
-	background: #222;
+	background: #9BA6B6;
 	clear: both;
 	display: block;
 	float: left;
@@ -449,7 +449,7 @@ a.assistive-text:focus,
 	position: relative;
 }
 #access a {
-	color: #eee;
+	color: #052049;
 	display: block;
 	line-height: 3.333em;
 	padding: 0 1.2125em;
@@ -471,17 +471,6 @@ a.assistive-text:focus,
 #access ul ul ul {
 	left: 100%;
 	top: 0;
-}
-#access ul ul a {
-	background: #f9f9f9;
-	border-bottom: 1px dotted #ddd;
-	color: #444;
-	font-size: 13px;
-	font-weight: normal;
-	height: auto;
-	line-height: 1.4em;
-	padding: 10px 10px;
-	width: 168px;
 }
 #access li:hover > a,
 #access ul ul :hover > a,
